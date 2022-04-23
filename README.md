@@ -79,7 +79,7 @@ There are many of them few are listed below :
 Finger spell is made for those physically challenged people who know sign language but find it difficult to communicate with others through it.
 
 
-Of course, there are thousands of words in sign language and I can't add all of them, so you may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this project!
+Of course, there are thousands of words in sign language and I can't add all of them, you may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this project!
 
 Use the `Contribution.md` to get started.
 
