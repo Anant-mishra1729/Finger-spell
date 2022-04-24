@@ -88,13 +88,12 @@ Use the `Contribution.md` to get started.
 
 
 ### Built With
+Below are the major frameworks/libraries used in this project. They can be extended further...
 
-This section should list any major frameworks/libraries used in this project. They can be extended further...
-
-* [Python](https://nextjs.org/)
-* [Opencv](https://reactjs.org/)
-* [Mediapipe](https://vuejs.org/)
-* [Tensorflow](https://angular.io/)
+* [Python](https://www.python.org/)
+* [Opencv](https://opencv.org/)
+* [Mediapipe](https://google.github.io/mediapipe/)
+* [Tensorflow](https://www.tensorflow.org/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
