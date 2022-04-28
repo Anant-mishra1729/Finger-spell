@@ -5,20 +5,19 @@ import cv2
 import numpy as np
 import pickle
 
-def findDistances(positions):
-	distMatrices = []
-	for k in range(len(positions)):
-		hand = positions[k]
-		distMatrix = np.zeros((len(hand),len(hand)),dtype = 'float')
-		palm_dist = ((hand[0][0]-hand[3][0])**2 + (hand[0][1]-hand[3][1])**2)**0.5
-		for i in range(0,len(hand)):
-			for j in range(0,len(hand)):
-				distMatrix[i][j] = (((hand[i][0] - hand[j][0])**2 + (hand[i][1] - hand[j][1])**2)**0.5)/palm_dist
-		distMatrices.append(distMatrix)
-	return distMatrices
+def findEucledianDist(handData,palmdist):
+	""" Eucledian distances between points 0,4,5,9,13,17,8,12,16 and 20 """
+	distMatrix = np.zeros([len(handData),len(handData)],dtype = 'float')
+	pd = palmdist[0]
+	for i in range(len(handData)):
+		if (i > 9):
+			pd = palmdist[1]
+		for j in range(len(handData)):
+			distMatrix[i][j] = (((handData[i][0]-handData[j][0])**2 + (handData[i][1]-handData[j][1])**2)**0.5)/pd
+	return distMatrix
 
 
-image_dir = "Resources\\ISL\\Indian\\2"
+image_dir = "Resources\\ISL\\Indian\\Thank you"
 output_path = "Output"
 
 images = utils.getFiles(image_dir,(".jpg",".png"))
@@ -32,14 +31,21 @@ for img in images:
 	image = cv2.imread(img)
 	results = tracker.findHands(cv2.cvtColor(image,cv2.COLOR_BGR2RGB))
 	positions = []
+	palmdist = []
 	if results:
 		for landmarks in results:
 			tracker.drawHands(image,landmarks)
-			positions.append(tracker.getPos(landmarks.landmark,image.shape,points))
-		result = findDistances(positions)
+			position = tracker.getPos(landmarks.landmark,image.shape,points)
+			pd = ((position[0][0]-position[3][0])**2 + (position[0][1]-position[3][1])**2)**0.5
+			palmdist.append(pd)
+			print(palmdist)
+			positions.extend(position)
+		result = (findEucledianDist(positions,palmdist),(image_dir.split("\\"))[-1])
+		print(result)
 	cv2.imshow("Output",image)
 	if cv2.waitKey(0) & 0xff == ord('q'):
 		break	
 
-with open(f'{output_path}\\{image_dir[-1]}.pickle','wb') as handle:
+with open('{}\\{}.pickle'.format(output_path,(image_dir.split("\\"))[-1]),'wb') as handle:
 	pickle.dump(result,handle)
+	print("Done...")
