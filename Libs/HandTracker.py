@@ -21,7 +21,8 @@ class HandTracker:
 
 def main():
 	import cv2
-	import time
+	from utils import Fps
+
 	# Camera configuration
 	width = 640
 	height = 320
@@ -30,7 +31,6 @@ def main():
 	cap.set(cv2.CAP_PROP_FRAME_HEIGHT,height)
 	cap.set(cv2.CAP_PROP_FPS,30)
 	cap.set(cv2.CAP_PROP_FOURCC,cv2.VideoWriter_fourcc(*'MJPG'))
-	pTime = 0
 	hands = HandTracker()
 
 	while True:
@@ -43,12 +43,7 @@ def main():
 				pos = hands.getPos(landmarks.landmark,image.shape,[4])
 				cv2.circle(image,pos[0],15,(0,0,255),cv2.FILLED)
 		
-		#FPS
-		cTime = time.time()
-		fps = 1/(cTime-pTime)
-		pTime = cTime
-		cv2.putText(image,str(int(fps)),(600,30),cv2.FONT_HERSHEY_PLAIN,2,(0,255,0),2)
-		
+		Fps(image)
 		cv2.imshow("Output",image)
 		if cv2.waitKey(1) & 0xff == ord('q'):
 			break

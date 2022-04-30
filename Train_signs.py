@@ -5,7 +5,7 @@ import cv2
 import numpy as np
 import pickle
 
-def findEucledianDist(handData,palmdist):
+def eucledianDistances(handData,palmdist):
 	""" Eucledian distances between points 0,4,5,9,13,17,8,12,16 and 20 """
 	distMatrix = np.zeros([len(handData),len(handData)],dtype = 'float')
 	pd = palmdist[0]
@@ -40,7 +40,7 @@ for img in images:
 			palmdist.append(pd)
 			print(palmdist)
 			positions.extend(position)
-		result = (findEucledianDist(positions,palmdist),(image_dir.split("\\"))[-1])
+		result = (eucledianDistances(positions,palmdist),(image_dir.split("\\"))[-1])
 		print(result)
 	cv2.imshow("Output",image)
 	if cv2.waitKey(0) & 0xff == ord('q'):
