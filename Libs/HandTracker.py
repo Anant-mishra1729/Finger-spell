@@ -1,9 +1,8 @@
 import mediapipe as mp
-
 class HandTracker:
 	def __init__(self,static = False,max_hands = 2,dconf = 0.5,tconf = 0.5):
-		self.hands_module = mp.solutions.hands
-		self.draw_module = mp.solutions.drawing_utils
+		self.hands_module = mp.solutions.mediapipe.python.solutions.hands
+		self.draw_module = mp.solutions.mediapipe.python.solutions.drawing_utils
 		self.hands = self.hands_module.Hands(static_image_mode= static,max_num_hands=max_hands,min_detection_confidence=dconf,min_tracking_confidence=tconf)
 	
 	def findHands(self,image):
@@ -22,7 +21,7 @@ class HandTracker:
 
 def main():
 	import cv2
-	import time
+	from utils import Fps
 
 	# Camera configuration
 	width = 640
@@ -32,7 +31,6 @@ def main():
 	cap.set(cv2.CAP_PROP_FRAME_HEIGHT,height)
 	cap.set(cv2.CAP_PROP_FPS,30)
 	cap.set(cv2.CAP_PROP_FOURCC,cv2.VideoWriter_fourcc(*'MJPG'))
-	pTime = 0
 	hands = HandTracker()
 
 	while True:
@@ -43,13 +41,9 @@ def main():
 			for landmarks in results:
 				hands.drawHands(image,landmarks)
 				pos = hands.getPos(landmarks.landmark,image.shape,[4])
-				cv2.circle(image,pos[0],12,(0,0,255),cv2.FILLED)
+				cv2.circle(image,pos[0],15,(0,0,255),cv2.FILLED)
 		
-		cTime = time.time()
-		fps = 1/(cTime-pTime)
-		pTime = cTime
-		cv2.putText(image,str(int(fps)),(600,30),cv2.FONT_HERSHEY_PLAIN,2,(0,255,0),2)
-		
+		Fps(image)
 		cv2.imshow("Output",image)
 		if cv2.waitKey(1) & 0xff == ord('q'):
 			break
