@@ -12,8 +12,8 @@ def getFiles(filePath,exts):
 				imgPaths.append(path.join(root, f))
 	return imgPaths
 
-def camera(width,height):
-	cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)
+def camera(width,height,value = 0):
+	cap = cv2.VideoCapture(value,cv2.CAP_DSHOW)
 	cap.set(cv2.CAP_PROP_FRAME_WIDTH,width)
 	cap.set(cv2.CAP_PROP_FRAME_HEIGHT,height)
 	cap.set(cv2.CAP_PROP_FPS,30)

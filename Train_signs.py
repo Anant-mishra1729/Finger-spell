@@ -1,6 +1,6 @@
 from unittest import result
-from libs.HandTracker import HandTracker
-from libs import utils
+from Libs.HandTracker import HandTracker
+from Libs import utils
 import cv2
 import numpy as np
 import pickle

@@ -1,11 +1,11 @@
-from libs.HandTracker import HandTracker
-from libs.utils import camera, getFiles, Fps
+from Libs.HandTracker import HandTracker
+from Libs.utils import camera, getFiles, Fps
 import cv2
 import numpy as np
 import pickle
 
 tracker = HandTracker()
-cap = camera(640, 320)
+cap = camera(640, 320, 0)
 files = getFiles("Output", (".pickle"))
 points = [0, 4, 5, 9, 13, 17, 8, 12, 16, 20]
 
@@ -14,7 +14,6 @@ for file in files:
     with open(file, 'rb') as handle:
         filedict.append(pickle.load(handle))
 
-print(filedict)
 
 def eucledianDistances(handData, palmdist):
     distMatrix = np.zeros([len(handData), len(handData)], dtype='float')
