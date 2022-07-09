@@ -3,6 +3,7 @@ import cv2
 import time
 
 pTime = 0
+hTime = 4
 def getFiles(filePath,exts):
 	imgPaths = []
 	for (root, dirs, files) in walk(filePath):
