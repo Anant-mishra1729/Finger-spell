@@ -69,7 +69,8 @@ Plotting (21 x 21) image of Eucledian differences between points 0, 4, 5, 9, 13,
 ### OpenCV + MediaPipe + Random Forest Classifier
 <br />
 
-Plotting (21 x 21) image of Eucledian differences between points 0, 4, 5, 9, 13, 17, 8, 12, 16 and 20, these plots can be easily differentiated.
+Plotting (21 x 21) image of Eucledian differences between points 0, 4, 5, 9, 13, 17, 8, 12, 16 and 20, plots can be easily differentiated.
+
 <img src = "Alphabets.jpg" />
 
 > Under work ...
@@ -81,11 +82,5 @@ Below are the major frameworks/libraries used in this project. They can be exten
 * [Python](https://www.python.org/)
 * [Opencv](https://opencv.org/)
 * [Mediapipe](https://google.github.io/mediapipe/)
-<<<<<<< HEAD
 * [Tensorflow](https://www.tensorflow.org/)
-
-
-
-=======
 * [Sklearn](https://www.tensorflow.org/)
->>>>>>> fa1f6ea41a1c2fbb96ccd38e302f22faf5b88c85
