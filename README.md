@@ -46,4 +46,4 @@ Below are the major frameworks/libraries used in this project. They can be exten
 * [Python](https://www.python.org/)
 * [Opencv](https://opencv.org/)
 * [Mediapipe](https://google.github.io/mediapipe/)
-* [Tensorflow](https://www.tensorflow.org/)
+* [Sklearn](https://www.tensorflow.org/)
